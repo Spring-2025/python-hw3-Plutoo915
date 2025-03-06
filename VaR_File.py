@@ -9,7 +9,7 @@ def VaR(r, confidence, principal = 1):
     # out = principal * positively stated value of r at the 1-alpha percentile
     plt.hist(r, bins=50, alpha=0.75)
     plt.show()
-    out=principal*np.percentile(r, (1 - confidence) * 100)
+    out=principal*np.abs(percentile(r, (1 - confidence) * 100))
     return out
 
 # Partial demonstration
@@ -21,5 +21,5 @@ def percent_var(r, confidence):
     plt.hist(r, bins=50, alpha=0.75)
     plt.show()
 
-    out = np.percentile(r, (1 - confidence) * 100)  # Calculate the percentile
+    out = abs(np.percentile(r, (1 - confidence) * 100))  # Calculate the percentile
     return abs(out)  # Return the absolute value of the calculated percentile
