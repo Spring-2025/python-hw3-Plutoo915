@@ -1,1 +1,25 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyO/3TzoxEeF+9CQ/NL/CLH8"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":null,"metadata":{"id":"TkU6wbcRGhQH"},"outputs":[],"source":["import numpy as np\n","import matplotlib.pyplot as plt\n","from scipy.stats import norm\n","def VaR(r, confidence, principal = 1):\n","    # This function returns the left tail value and displays a histogram\n","    # r = a vector of stock returns\n","    # principal = investment initial value\n","    # <your work>\n","    # out = principal * positively stated value of r at the 1-alpha percentile\n","    plt.hist(r, bins=50, alpha=0.75)\n","    plt.show()\n","    out=principal*np.percentile(r, (1 - confidence) * 100)\n","    return out\n","\n","# Partial demonstration\n","def percent_var(r, confidence):\n","    # This function returns the left tail value and displays a histogram\n","    # r = a vector of stock percent returns\n","    # out = positively stated value of r at the 1-alpha percentile\n","\n","    plt.hist(r, bins=50, alpha=0.75)\n","    plt.show()\n","\n","    out = np.percentile(r, (1 - confidence) * 100)  # Calculate the percentile\n","    return abs(out)  # Return the absolute value of the calculated percentile"]}]}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+def VaR(r, confidence, principal = 1):
+    # This function returns the left tail value and displays a histogram
+    # r = a vector of stock returns
+    # principal = investment initial value
+    # <your work>
+    # out = principal * positively stated value of r at the 1-alpha percentile
+    plt.hist(r, bins=50, alpha=0.75)
+    plt.show()
+    out=principal*np.percentile(r, (1 - confidence) * 100)
+    return out
+
+# Partial demonstration
+def percent_var(r, confidence):
+    # This function returns the left tail value and displays a histogram
+    # r = a vector of stock percent returns
+    # out = positively stated value of r at the 1-alpha percentile
+
+    plt.hist(r, bins=50, alpha=0.75)
+    plt.show()
+
+    out = np.percentile(r, (1 - confidence) * 100)  # Calculate the percentile
+    return abs(out)  # Return the absolute value of the calculated percentile
