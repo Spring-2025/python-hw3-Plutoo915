@@ -1,1 +1,19 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyOF+R3vZ+fag1eey/ySisz8"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"id":"Nail8sxvGN16","executionInfo":{"status":"ok","timestamp":1741292144172,"user_tz":300,"elapsed":3377,"user":{"displayName":"Kai Han","userId":"18307689060784219991"}}},"outputs":[],"source":["import yfinance as yf\n","import pandas as pd\n","\n","def get_stock_data(symbol):\n","    data = yf.download(symbol)\n","    prices = data['Close']\n","    return prices\n","\n","def get_returns(pricevec):\n","    n = len(pricevec)\n","    ratiovec = pricevec[1:n] / pricevec[:n-1]\n","    returns = ratiovec - 1\n","    return returns\n","\n","def YahooData2returns(YahooData):\n","    prices = get_stock_data(YahooData)\n","    pricevec=prices.values\n","    returns = get_returns(pricevec)\n","    return returns"]}]}
+import yfinance as yf
+import pandas as pd
+
+def get_stock_data(symbol):
+    data = yf.download(symbol) 
+    prices = data['Close']
+    return prices
+
+def get_returns(pricevec):
+    n = len(pricevec)
+    ratiovec = pricevec[1:n] / pricevec[:n-1]
+    returns = ratiovec - 1 
+    return returns
+
+def YahooData2returns(YahooData):
+    prices = get_stock_data(YahooData)
+    pricevec=prices.values
+    returns = get_returns(pricevec)
+    return returns
