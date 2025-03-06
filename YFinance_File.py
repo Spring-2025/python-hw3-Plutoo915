@@ -13,7 +13,10 @@ def get_returns(pricevec):
     return returns
 
 def YahooData2returns(YahooData):
-    prices = get_stock_data(YahooData)
-    pricevec=prices.values
+   if isinstance(YahooData, pd.DataFrame):  
+        prices = YahooData['Adj Close']  
+    else:
+        prices = get_stock_data(YahooData)  
+    pricevec = prices.values  
     returns = get_returns(pricevec)
     return returns
