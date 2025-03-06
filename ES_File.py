@@ -1,1 +1,19 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyMtoSPy4eFDcgJXR7SUiA/T"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":null,"metadata":{"id":"FiLoycRKGvih"},"outputs":[],"source":["import numpy as np\n","\n","def ES(losses, confidence=None, VaR=None, use_PnL=False):\n","    \"\"\"\n","    Calculate the Expected Shortfall (ES) of losses.\n","\n","    losses: array of positively stated loss values\n","    confidence: risk level (e.g., 0.99 for 99%)\n","    VaR: dollar value specifying the VaR threshold\n","\n","    return Expected Shortfall as the average of losses exceeding VaR\n","    \"\"\"\n","    if VaR is None:\n","        # If VaR is not provided, determine VaR based on the confidence percentile\n","        VaR = np.percentile(losses, 100 * confidence)\n","\n","    # Calculate ES as the average of losses exceeding the VaR threshold\n","    es_value = np.mean(losses[losses > VaR])\n","    return es_value"]}]}
+import numpy as np
+
+def ES(losses, confidence=None, VaR=None, use_PnL=False):
+    """
+    Calculate the Expected Shortfall (ES) of losses.
+    
+    losses: array of positively stated loss values
+    confidence: risk level (e.g., 0.99 for 99%)
+    VaR: dollar value specifying the VaR threshold
+
+    return Expected Shortfall as the average of losses exceeding VaR
+    """
+    if VaR is None:
+        # If VaR is not provided, determine VaR based on the confidence percentile
+        VaR = np.percentile(losses, 100 * confidence)
+    
+    # Calculate ES as the average of losses exceeding the VaR threshold
+    es_value = np.mean(losses[losses > VaR])
+    return es_value
